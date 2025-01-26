@@ -1,0 +1,25 @@
+# Ignore Python cache files
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignore SQLite database file
+/db/carenotes.db
+
+# Ignore virtual environment
+venv/
+.env
+
+# Ignore logs and temporary files
+*.log
+*.tmp
+
+# Ignore compiled Python files
+*.pyc
+*.pyd
+*.pyo
+
+# Ignore IDE-specific files
+.vscode/
+.idea/
+*.swp
