@@ -9,22 +9,26 @@
 </head>
 <body>
     <div class="container">
-        <h1>Care Notes</h1>
-
-        <label for="filter">Filter by Resident:</label>
-        <select id="filter" onchange="fetchNotes()">
-            <option value="">All Residents</option>
-        </select>
-
-        <div class="note-form">
-            <input type="text" id="residentName" placeholder="Resident Name">
-            <input type="text" id="authorName" placeholder="Author Name">
-            <textarea id="content" placeholder="Note Content"></textarea>
-            <button onclick="addNote()">Submit</button>
+        <!-- Left Section for Adding Notes -->
+        <div class="left-section">
+            <h2>Add a Note</h2>
+            <div class="note-form">
+                <input type="text" id="residentName" placeholder="Resident Name">
+                <input type="text" id="authorName" placeholder="Author Name">
+                <textarea id="content" placeholder="Note Content"></textarea>
+                <button onclick="addNote()">Submit</button>
+            </div>
         </div>
 
-        <h2>Existing Notes</h2>
-        <div id="notes"></div>
+        <!-- Right Section for Viewing and Filtering Notes -->
+        <div class="right-section">
+            <h2>Existing Notes</h2>
+            <label for="filter">Filter by Resident:</label>
+            <select id="filter" onchange="fetchNotes()">
+                <option value="">All Residents</option>
+            </select>
+            <div id="notes"></div>
+        </div>
     </div>
 </body>
 </html>
