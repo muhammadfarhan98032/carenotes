@@ -29,6 +29,16 @@
             </select>
             <div id="notes"></div>
         </div>
+        <div id="editFormContainer" style="display: none;">
+            <h2>Edit Note</h2>
+            <input type="hidden" id="editNoteId">
+            <input type="text" id="editResidentName" placeholder="Resident Name">
+            <input type="text" id="editAuthorName" placeholder="Author Name">
+            <textarea id="editContent" placeholder="Note Content"></textarea>
+            <button onclick="updateNote()">Save Changes</button>
+            <button onclick="cancelEdit()">Cancel</button>
+        </div>
+        
     </div>
 </body>
 </html>

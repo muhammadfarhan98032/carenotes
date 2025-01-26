@@ -162,33 +162,29 @@ def list_notes(residentName: Optional[str] = Query(None)):
 
 @app.put("/notes/update/{id}", response_model=Note)
 def update_note(id: int, note: Note):
-    """Updates an existing care note.
+    """Updates an existing care note."""
+    
+    print(f"🛠️ Received UPDATE request for note ID: {id}")
 
-    Args:
-        id (int): The ID of the note to update.
-        note (Note): The updated note data.
-
-    Returns:
-        Note: The updated note.
-
-    Raises:
-        HTTPException: If the note is not found or an internal error occurs.
-
-    Example:
-        >>> update_note(1, Note(residentName="Alice Johnson", dateTime="2024-09-17T10:30:00Z", content="Updated content", authorName="Nurse Smith"))
-    """
     try:
         conn = get_db_connection()
         cursor = conn.cursor()
-        cursor.execute("UPDATE notes SET residentName = ?, dateTime = ?, content = ?, authorName = ? WHERE id = ?",
-                    (note.residentName, note.dateTime, note.content, note.authorName, id))
+        cursor.execute(
+            "UPDATE notes SET residentName = ?, dateTime = ?, content = ?, authorName = ? WHERE id = ?",
+            (note.residentName, note.dateTime, note.content, note.authorName, id)
+        )
         if cursor.rowcount == 0:
+            print(f" No note found with ID: {id}")
             raise HTTPException(status_code=404, detail="Note not found.")
         conn.commit()
         conn.close()
+
+        print(f" Successfully updated note with ID: {id}")
         return note
     except Exception as e:
+        print(f" Error updating note: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Internal Server Error: {str(e)}")
+
 
 @app.delete("/notes/delete/{id}")
 def delete_note(id: int):
